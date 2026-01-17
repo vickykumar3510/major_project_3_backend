@@ -17,7 +17,7 @@ app.use(cors())
 app.use(express.json())
 initializeDatabase()
 
-const JWT_SECRET = 'your_jwt_secret'
+const JWT_SECRET = process.env.JWT_SECRET
 
 app.get('/', (req, res) => {
     res.json({ok: true, message: "app is working."})
