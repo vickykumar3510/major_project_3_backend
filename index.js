@@ -488,10 +488,12 @@ app.get('/reports/tasks-closed-by-owner', async (req, res) => {
 
 
 app.use((req, res) => {
-    res.status(404).json({error: "Not found."})
-})
+  res.status(404).json({ error: 'Not found' });
+});
 
-const PORT = process.env.PORT || 3000
-app.listen(PORT, () => {
-    console.log("Server is running on the PORT", PORT)
-})
+if (require.main === module) {
+  const PORT = process.env.PORT || 3000;
+  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+}
+
+module.exports = app;
