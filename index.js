@@ -3,6 +3,7 @@ const cors = require('cors')
 const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+require('dotenv').config();
 
 const app = express()
 
@@ -16,6 +17,14 @@ const Tag = require('./models/tag.models')
 app.use(cors())
 app.use(express.json())
 initializeDatabase()
+
+//mongoDB connection
+mongoose.connect(process.env.MONGODB, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(() => console.log("MongoDB connected"))
+.catch(err => console.error("MongoDB connection error:", err));
 
 const JWT_SECRET = process.env.JWT_SECRET
 
