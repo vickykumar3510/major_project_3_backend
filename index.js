@@ -118,7 +118,7 @@ app.get('/teams', async(req, res) => {
 app.get('/projects', async(req, res) => {
     try{
         const projects = await Project.find()
-        if(projects > 0){
+        if(projects !== 0){
             res.json(projects)
         }else{
             res.status(404).json({error: "No projects found."})
